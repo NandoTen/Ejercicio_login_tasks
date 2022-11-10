@@ -11,6 +11,8 @@ import TaskComponent from './components/pure/task';
 import TaskListComponent from './components/container/task_list';
 import GreetingStyle from './components/pure/forms/greetingStyle';
 import Clock from './components/container/clock';
+import Father from './components/container/father';
+import ContactList from './components/container/contact_list';
 
 function App() {
   return (
@@ -24,8 +26,12 @@ function App() {
         {/*<Allcycles></Allcycles>*/}
         {/*<Clock></Clock>*/}
         {/*<GreetingStyle nombre='Robot'></GreetingStyle>*/}
+        {/*<TaskListComponent></TaskListComponent>*/}
+
         
-        <TaskListComponent></TaskListComponent>
+        <ContactList></ContactList>
+        
+        {/*<Father></Father>*/}
 
     </div>
   );

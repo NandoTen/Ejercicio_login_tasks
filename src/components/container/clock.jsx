@@ -8,6 +8,8 @@ const Clock = () => {
         nombre: 'Martín',
         apellidos: 'San José'
     }
+
+    
     const [clock, setClock] = useState(estadoInicial)
 
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { LEVELS } from '../../models/levels.enum'
 import { Task } from '../../models/task.class'
+import TaskForm from '../pure/forms/taskForm'
 import TaskComponent from '../pure/task'
 
 
@@ -25,11 +26,32 @@ const TaskListComponent = props => {
 
       },[tasks])
 
-
-
-      const changeCompleted=(id)=>{
-        console.log('Cambiar estado de una tarea')
+      const deleteTask=(task)=>{
+        console.log('Delete this task:', task)
+        const index = tasks.indexOf(task)
+        const tempTasks = [...tasks]
+        tempTasks.splice(index,1)
+        setTasks(tempTasks)
       }
+
+      const completeTask=(task)=>{
+        console.log('Complete this task:', task)
+        const index = tasks.indexOf(task)
+        const tempTasks = [...tasks]
+        tempTasks[index].completed = !tempTasks[index].completed
+        // actualizamos el estado de tasks para que actalice la iteración de map()
+        setTasks(tempTasks)
+      }
+
+      const addTask=(task)=>{
+        console.log('Add this task:', task)
+        const index = tasks.indexOf(task)
+        const tempTasks = [...tasks]
+        tempTasks.push(task)
+        setTasks(tempTasks)
+      }
+
+
 
         return (
           <div className='col-12'>
@@ -37,7 +59,7 @@ const TaskListComponent = props => {
                 <div className='card-header p-3'>
                 <h5>Your Tasks:</h5>
                 </div>
-              </div>
+              
               <div className='card-body' style={{positio:'relative', height:'400px'}}>
                 <table>
                 <thead>
@@ -50,12 +72,19 @@ const TaskListComponent = props => {
                 </thead>
                 <tbody> 
                 { tasks.map((task,index)=>{
-                  return( <TaskComponent task ={task} key={index}></TaskComponent>)
+                  return( <TaskComponent 
+                      task ={task} 
+                      key={index}
+                      complete ={completeTask}
+                      remove ={deleteTask}
+                      ></TaskComponent>)
                   })
                 }
                 </tbody>
                 </table>
               </div>
+              </div>
+              <TaskForm add={addTask}></TaskForm>
           </div>
         )
       }
