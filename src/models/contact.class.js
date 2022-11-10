@@ -6,12 +6,11 @@ export class Contact {
     contacto = true
     
     
-    constructor(nombre, apellido, email, contacto, test){
+    constructor(nombre, apellido, email, contacto){
         this.nombre = nombre
         this.apellido = apellido
         this.email = email
         this.contacto = contacto
-        this.test = test
     }
     
     }
