@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+### Ejercicio capítuloos 16, 17 y 18
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Crear el sistema de enrutado de la aplicación en React:
+- Permitir la navegación de Login a Registro y viceversa
+- No podremos acceder a Tareas a no ser que nos hayamos logeado primero.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+![](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=flat)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+**Rutas y Componentes**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+```
+AppRoutingOne:
+    Route Register --> RegisterPage --> registerForm --> sessionStorage // session
+    Route Login --> LoginPage --> loginForm --> sessionStorage // sessionLogged
+	sessionLogged = session ? --> tasksPage --> sessionStorage // logged
+    Route Task --> tasksPage
+	Route Home --> HomePage
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Mi solución:
+-------------
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A efectos del ejercicio guardaré en sessionStorage los datos del registro 'session' y el estado 'logeado, no logeado' en 'logged'
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+El componente AppRoutingOne define y administra las rutas a los 4 páginas HomePage, LoginPage, RegisterPage y TasksPage.
 
-### `npm run eject`
+Un useState registra el estado en logged (true/false) por defecto false (no logeado), como es asíncrono, usamos un
+useEffect que detecta el cambio y lo guarda como 'logged' en sessionStorage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- RegisterPage contiene el componente registerFormik, formulario de registro que guarda los datos en sessionSorage como 'session'
+- LoginPage contiene el componente loginFormik, formulario que compara los datos introducidos con los guardados en 'session' si coinciden
+     actualiza 'logged' (true) y redirige a la TaskPage
+- TasksPage se accede si 'logged' es true si no redirige a LoginPage
+- HomePage contiene botones a todas las páginas y un botón Logout que cambia 'logged' a false
