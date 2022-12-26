@@ -1,9 +1,10 @@
 
-### Ejercicio capítuloos 16, 17 y 18
+### Ejercicio capítulos 19, 20 y 21
 
-Crear el sistema de enrutado de la aplicación en React:
-- Permitir la navegación de Login a Registro y viceversa
-- No podremos acceder a Tareas a no ser que nos hayamos logeado primero.
+Hacer una petición HTTP con Axios a la API descrita en la web https://api.chucknorris.io/ y crear un Componente React capaz de generar chistes aleatorios de Chuck Norris y mostrarlos.
+- Debe haber un botón que permita al usuario generar nuevos chistes.
+- También debe mostrarse un par de botones con Material UI que permitan votar (positivamente o negativamente un chiste).
+- Se debe mostrar el número de chistes te "han gustado" y cuántos "te han disgustado".
 
 
 
@@ -11,30 +12,15 @@ Crear el sistema de enrutado de la aplicación en React:
 
 
 
-**Rutas y Componentes**
-
-
-```mermaid
-AppRoutingOne:
-    Route Register --> RegisterPage --> registerForm --> sessionStorage // session
-    Route Login --> LoginPage --> loginForm --> sessionStorage // sessionLogged
-	sessionLogged = session ? --> tasksPage --> sessionStorage // logged
-    Route Task --> tasksPage
-	Route Home --> HomePage
-```
-
 Mi solución:
 -------------
 
-A efectos del ejercicio guardaré en sessionStorage los datos del registro 'session' y el estado de login en 'logged'
+En la carpeta **utils** creamos un archivo axios.configNorris.js que crea llamada Axios a la API que devolverá un chiste al azar.
+En la carpeta **servicios** creamos axiosServicesNorris.js que contiene la función getRandomJoke() que devuelve la respuesta de la API
+El componente **AxiosExerciceNorris** con un useEffect gestiona la llamada a getRandomJoke() y 3 useState.
 
-El componente AppRoutingOne define y administra las rutas a los 4 páginas HomePage, LoginPage, RegisterPage y TasksPage.
+- [*joke, setJoke*] guarda y actualiza los datos recibidos de la API
+- [*jokeTotalCount, setJokeTotalCount*] contabiliza los like y dislike en un array inicialmente [0,0]
+- [*jokeCount, setJokeCount*] los botones guarda dos estados: :+1: => [1,0], :-1: => [0,1], una vez pulsado uno de ellos, se actualizan los totales en la vista pero no se actualizan en *jokeTotalCount* hasta que se pulsa en 'new joke'.
 
-Un useState registra el estado en logged (true/false) por defecto false, como es asíncrono, usamos un
-useEffect que detecta el cambio y lo guarda como 'logged' en sessionStorage
 
-- RegisterPage contiene el componente registerFormik, formulario de registro que guarda los datos en sessionSorage como 'session'
-- LoginPage contiene el componente loginFormik, formulario que compara los datos introducidos con los guardados en 'session' si coinciden
-     actualiza 'logged' (true) y redirige a la TaskPage
-- TasksPage se accede si 'logged' es true si no redirige a LoginPage
-- HomePage contiene botones a todas las páginas y un botón Logout que cambia 'logged' a false
