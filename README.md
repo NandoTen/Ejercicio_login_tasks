@@ -20,7 +20,13 @@ En la carpeta **servicios** creamos axiosServicesNorris.js que contiene la funci
 El componente **AxiosExerciceNorris** con un useEffect gestiona la llamada a getRandomJoke() y 3 useState.
 
 - [*joke, setJoke*] guarda y actualiza los datos recibidos de la API
-- [*jokeTotalCount, setJokeTotalCount*] contabiliza los like y dislike en un array inicialmente [0,0]
-- [*jokeCount, setJokeCount*] los botones guarda dos estados: :+1: => [1,0], :-1: => [0,1], una vez pulsado uno de ellos, se actualizan los totales en la vista pero no se actualizan en *jokeTotalCount* hasta que se pulsa en 'new joke'.
+- [*jokeTotalCount, setJokeTotalCount*] contabiliza los like y dislike en un array inicialmente [0,0] => [*number of likes, number of dislikes*]
+- [*jokeCount, setJokeCount*] los botones guardan uno de dos estados: :+1: => [1,0], :-1: => [0,1], una vez pulsado uno de ellos, se actualizan los totales en la vista pero no se actualizan en *jokeTotalCount* hasta que se pulsa en 'new joke'.
+<br/>
+<p align="center">
+<img src='https://github.com/NandoTen/Ejercicio_login_tasks/blob/chuckNorrisJokes/public/exerciceNorris.png' />
+</p>
 
+
+Los botones e iconos utilizan Material UI
 
