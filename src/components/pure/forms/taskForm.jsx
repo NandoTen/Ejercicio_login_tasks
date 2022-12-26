@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { LEVELS } from '../../../models/levels.enum'
 import { Task } from '../../../models/task.class'
 
-const TaskForm = ({add}) => {
+const TaskForm = ({add , length}) => {
 
 const nameRef = useRef('')
 const descriptionRef = useRef('')
@@ -21,19 +21,20 @@ const addTask = (e)=>{
     add(newTask)
 }
 
+
   return (
     <div>
     <form onSubmit={addTask} className='d-flex justify-content align-items-center mb-4'>
         <div className='form-outline flex-fill'>
             <input ref={nameRef} id='inputName' type='text' className='form-control form-lg' placeholder='Task name' required autoFocus></input>
             <input ref={descriptionRef} id='inputDescription' type='text' className='form-control form-lg' placeholder='Task description' required ></input>
-            <label htmlFor ='selectLevel' className='sr-only'>Priority</label>
-            <select ref={levelRef} defaultValue={LEVELS.NORMAL} id='selectLevel'>
+            <select ref={levelRef}  id='selectLevel' className='form-control form-lg'>
                 <option value={LEVELS.NORMAL}>Normal</option>
                 <option value={LEVELS.URGENT}>Urgent</option>
                 <option value={LEVELS.BLOCKING}>Blocking</option>
             </select>
-            <button type='submit' className='btn btn-success btn-lg ms-5'>Add</button>
+            <br></br>
+            <button type='submit' className='btn btn-success btn-lg ms-5'>{length > 0 ? 'Add Task': 'Create Task'}</button>
         </div>
 
     </form>
@@ -42,8 +43,9 @@ const addTask = (e)=>{
   )
 }
 
-TaskForm.protoTypes ={
-       add: PropTypes.func.isRequired 
+TaskForm.protoTypes = {
+       add: PropTypes.func.isRequired,
+       length: PropTypes.number.isRequired
 
 }
 

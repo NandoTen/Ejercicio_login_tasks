@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ComponentA from './components/container/componentA';
@@ -13,6 +14,11 @@ import GreetingStyle from './components/pure/forms/greetingStyle';
 import Clock from './components/container/clock';
 import Father from './components/container/father';
 import ContactList from './components/container/contact_list';
+import OptionalRender from './components/pure/forms/optionalRender';
+import BoxcolorChange from './components/pure/forms/boxcolorChange';
+import LoginFormik from './components/pure/forms/loginFormik';
+import RegisterFormik from './components/pure/forms/registerFormik';
+import AxiosExerciceNorris from './components/pure/AxiosExerciceNorris'
 
 function App() {
   return (
@@ -26,12 +32,23 @@ function App() {
         {/*<Allcycles></Allcycles>*/}
         {/*<Clock></Clock>*/}
         {/*<GreetingStyle nombre='Robot'></GreetingStyle>*/}
-        {/*<TaskListComponent></TaskListComponent>*/}
+       
 
+        {/*<ContactList></ContactList>*/}
         
-        <ContactList></ContactList>
         
         {/*<Father></Father>*/}
+
+        {/* <TaskListComponent></TaskListComponent> */}
+        <AxiosExerciceNorris></AxiosExerciceNorris>
+
+         {/* Ejemplo de renderizado condicional*/}
+
+        {/*  <OptionalRender></OptionalRender> */}
+         {/* <BoxcolorChange></BoxcolorChange> */}
+
+        {/*  <LoginFormik></LoginFormik> */}
+         {/* <RegisterFormik></RegisterFormik> */}
 
     </div>
   );

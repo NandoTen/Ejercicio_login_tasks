@@ -2,9 +2,9 @@ import React, {useState,useEffect} from 'react'
 
 const LoginForm = () => {
 
-const initalCred =[{user:'',password: ''}]
+const initalCredentiasl =[{user:'',password: ''}]
 
-const [cred, setCred ]= useState(initalCred)
+const [credentials, setCredrentials ]= useState(initalCredentiasl)
 
   return (
     <div>
